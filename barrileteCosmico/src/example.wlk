@@ -15,7 +15,7 @@ object barrileteCosmico {
 	}
 	
 	method esExtrema(){
-		return (destinos.any({destino=> destino.equipaje().constains("Vacuna")}))
+		return ( self.destinosImportantes().map({destino=>destino.equipaje()})).map({elemento => elemento.any({el => el.contains("Vacuna") || el.contains("vacuna")})}).any({valor => true})
 	}
 	
 	method destinos(){
