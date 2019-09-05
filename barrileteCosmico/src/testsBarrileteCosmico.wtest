@@ -1,0 +1,47 @@
+import example.*
+test "Obtener destinos mas importantes de Barrilete Cosmico" {
+
+	assert.equals(#{lastToninas,garlicSea},barrileteCosmico.destinosImportantes())
+
+}
+
+test "Aplicar 25% de descuento a Last Toninas" 
+{
+	lastToninas.descuento(25)
+	assert.equals(2625,lastToninas.precio())
+}
+
+test "Aplicar 25% de descuento a Last Toninas y agregar certificado de descuento"
+{
+	lastToninas.descuento(25)
+	assert.that(lastToninas.equipaje().contains("Certificado de descuento"))
+}
+
+test "Averiguar si Silver's Sea es un destino peligroso"
+{
+	assert.notThat(silverSea.esPeligroso())
+}
+
+test "Aplicar descuento del 15% a todos los destino de Barrilete Cosmico"
+{
+	barrileteCosmico.aplicarDescuento(15)
+	assert.equals(2125,garlicSea.precio())
+	assert.equals(1147.5,silverSea.precio())
+	assert.equals(2975,lastToninas.precio())
+	assert.equals(1275,goodAirs.precio())
+}
+
+test "Obtener los detinos mas peligroso hasta el momento"
+{
+	assert.equals(#{lastToninas},barrileteCosmico.destinos().filter({unDestino =>unDestino.esPeligroso()}))
+}
+
+test "Saber si barrilete cosmico es una empresa extrema"
+{
+	assert.that(barrileteCosmico.esExtrema())
+}
+
+test "Conocer la carta de destinos de Barrilete Cosmico"
+{
+	assert.equals(#{lastToninas,garlicSea,goodAirs,silverSea,barrileteCosmico.destinos()})
+}

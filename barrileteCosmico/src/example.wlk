@@ -15,7 +15,7 @@ object barrileteCosmico {
 	}
 	
 	method esExtrema(){
-		return ( self.destinosImportantes().map({destino=>destino.equipaje()})).map({elemento => elemento.any({el => el.contains("Vacuna") || el.contains("vacuna")})}).any({valor => true})
+		return self.destinosImportantes().any({unDestino => unDestino.esPeligroso()})
 	}
 	
 	method destinos(){
@@ -50,6 +50,10 @@ object garlicSea{
 		var aux = porcentaje/100
 		precio = precio - (aux*precio)
 	}
+	
+	method esPeligroso(){
+		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
+	}
 }
 
 object silverSea{
@@ -79,6 +83,9 @@ object silverSea{
 		var aux = porcentaje/100
 		precio = precio - (aux*precio)
 	}
+	method esPeligroso(){
+		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
+	}
 }
 
 object lastToninas{
@@ -105,6 +112,9 @@ object lastToninas{
 	}
 	method agregarAlEquipaje(elemento){
 		equipaje.add(elemento)
+	}
+	method esPeligroso(){
+		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
 	}
 }
 
@@ -134,5 +144,8 @@ object goodAirs{
 	method descuento(porcentaje){
 		var aux = porcentaje/100
 		precio = precio - (aux*precio)
+	}
+	method esPeligroso(){
+		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
 	}
 }
