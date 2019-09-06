@@ -43,7 +43,7 @@ test "Saber si barrilete cosmico es una empresa extrema"
 
 test "Conocer la carta de destinos de Barrilete Cosmico"
 {
-	assert.equals(#{lastToninas,garlicSea,goodAirs,silverSea,barrileteCosmico.destinos()})
+	assert.equals(#{lastToninas,garlicSea,goodAirs,silverSea},barrileteCosmico.destinos())
 }
 
 test "Obtener las millas de PHari"
