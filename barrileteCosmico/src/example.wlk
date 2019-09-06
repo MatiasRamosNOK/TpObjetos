@@ -10,7 +10,6 @@ object barrileteCosmico {
 	method aplicarDescuento(porcentaje){
 		destinos.forEach({destino => 
 			destino.descuento(porcentaje)
-			destino.agregarAlEquipaje("Certificado de descuento")
 		})
 	}
 	
@@ -49,6 +48,7 @@ object garlicSea{
 	method descuento(porcentaje){
 		var aux = porcentaje/100
 		precio = precio - (aux*precio)
+		self.agregarAlEquipaje("Certificado de descuento")
 	}
 	
 	method esPeligroso(){
@@ -82,6 +82,7 @@ object silverSea{
 	method descuento(porcentaje){
 		var aux = porcentaje/100
 		precio = precio - (aux*precio)
+		self.agregarAlEquipaje("Certificado de descuento")
 	}
 	method esPeligroso(){
 		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
@@ -106,6 +107,7 @@ object lastToninas{
 	method descuento(porcentaje){
 		var aux = porcentaje/100
 		precio = precio - (aux*precio)
+		self.agregarAlEquipaje("Certificado de descuento")
 	}
 	method destacado(){
 		return precio>2000
@@ -144,6 +146,7 @@ object goodAirs{
 	method descuento(porcentaje){
 		var aux = porcentaje/100
 		precio = precio - (aux*precio)
+		self.agregarAlEquipaje("Certificado de descuento")
 	}
 	method esPeligroso(){
 		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
