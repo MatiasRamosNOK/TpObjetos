@@ -160,6 +160,10 @@ object pHairi {
 		return conoceDestinos
 	}
 	
+	method saldo(){
+		return saldo
+	}
+	
 	method agregarDestino(unDestino){
 		conoceDestinos.add(unDestino)
 	}
@@ -200,6 +204,10 @@ object otroUser {
 	
 	method conoceDestinos(){
 		return conoceDestinos
+	}
+	
+	method saldo(){
+		return saldo
 	}
 	
 	method agregarDestino(unDestino){

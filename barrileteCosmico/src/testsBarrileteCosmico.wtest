@@ -45,3 +45,21 @@ test "Conocer la carta de destinos de Barrilete Cosmico"
 {
 	assert.equals(#{lastToninas,garlicSea,goodAirs,silverSea,barrileteCosmico.destinos()})
 }
+
+test "Obtener las millas de PHari"
+{
+	assert.equals(500,pHairi.kilometrosDisponibles())
+}
+
+test "Hacer que PHari vuele a Silver 's Sea. Puede viajar y contiene en su historial"
+{
+	assert.that(pHairi.puedeViajarA(silverSea))
+	pHairi.viajarA(silverSea)
+	assert.that(pHairi.conoceDestinos().contains(silverSea))
+}
+
+test "Hacer que PHari vuele a Silver 's Sea. Le queda 150 en su saldo"
+{
+	pHairi.viajarA(silverSea)
+	assert.equals(150,pHairi.saldo())
+}
