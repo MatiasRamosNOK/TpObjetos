@@ -1,7 +1,19 @@
 /** First Wollok example */
 object barrileteCosmico {
 	var destinos = #{garlicSea,silverSea,lastToninas,goodAirs}
+	var usuarios = #{}
 	
+	method usuarios(){
+		return usuarios
+	}
+	
+	method agregarUser(userName){
+		usuarios.add(userName)
+	}
+	
+	method quitarUser(userName){
+		usuarios.remove(userName)
+	}
 	
 	method destinosImportantes(){
 		return destinos.filter({destino => destino.destacado()})
@@ -18,7 +30,7 @@ object barrileteCosmico {
 	}
 	
 	method destinos(){
-		return destinos
+		return destinos.map({destino => destino.nombre()});
 	}
 }
 
@@ -157,52 +169,6 @@ object pHairi {
 	
 	var conoceDestinos = [lastToninas, goodAirs]
 	var saldo = 1500
-	var sigueA = #{}
-	
-	method conoceDestinos(){
-		return conoceDestinos
-	}
-	
-	method saldo(){
-		return saldo
-	}
-	
-	method agregarDestino(unDestino){
-		conoceDestinos.add(unDestino)
-	}
-	
-	method puedeViajarA(unDestino){
-		return (saldo - unDestino.precio()) >= 0
-	}
-	
-	method pagarViajeA(unDestino){
-		saldo -= unDestino.precio()
-	}
-	
-	method viajarA(unDestino){
-		if(self.puedeViajarA(unDestino)){
-			self.agregarDestino(unDestino)
-			self.pagarViajeA(unDestino)
-		}
-	}
-	
-	method kilometrosDisponibles(){
-		return conoceDestinos.sum({unDestino => unDestino.precio()}) * 0.1
-	}
-	
-	method seguirA(unUsuario){
-		sigueA.add(unUsuario)
-	}
-	
-	method seguirUsuario(unUsuario){
-		unUsuario.seguirA(self)
-		self.seguirA(unUsuario)
-	}
-}
-
-object otroUser {
-	var conoceDestinos = []
-	var saldo = 5000
 	var sigueA = #{}
 	
 	method conoceDestinos(){
