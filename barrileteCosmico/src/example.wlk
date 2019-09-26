@@ -2,6 +2,7 @@
 object barrileteCosmico {
 	var destinos = #{}
 	var usuarios = #{}
+	var mediosDeTransporte = #{}
 	
 	method usuarios(){
 		return usuarios
@@ -34,10 +35,11 @@ object barrileteCosmico {
 	}
 }
 
-class Destino{
+class Localidad{
 	var property equipaje = []
 	var property precio = 0
 	var property nombre = ""
+	var property kilometraje
 	
 	method destacado(){
 		return precio>2000
@@ -56,17 +58,28 @@ class Destino{
 		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
 	}
 	
+	method distanciaHasta(ciudad){
+		return calculadoraDeDistancia.distancia(self,ciudad)
+	}
 }
 
+
+object calculadoraDeDistancia{	
+	method distancia(ciudadA,ciudadB){
+		return (ciudadA.kilometraje() - ciudadB.kilometraje()).abs()
+	}
+}
 class Usuario{
 
-	
-	var destinosQueConoce = []
+	var viajes = []
 	var saldo = 1500
 	var sigueA = #{}
+	var property ciudad
+	var property metodoDeTransporte
+	var kilometrosRecorridos = 0
 	
 	method conoceDestinos(){
-		return destinosQueConoce
+		return viajes
 	}
 	
 	method saldo(){
@@ -74,11 +87,11 @@ class Usuario{
 	}
 	
 	method agregarDestino(unDestino){
-		destinosQueConoce.add(unDestino)
+		viajes.add(unDestino)
 	}
 	
 	method puedeViajarA(unDestino){
-		return (saldo - unDestino.precio()) >= 0
+		return (saldo - unDestino.precio() - metodoDeTransporte.precio(ciudad,unDestino)) >= 0
 	}
 	
 	method pagarViajeA(unDestino){
@@ -89,11 +102,13 @@ class Usuario{
 		if(self.puedeViajarA(unDestino)){
 			self.agregarDestino(unDestino)
 			self.pagarViajeA(unDestino)
+			self.ciudad(unDestino)
+			kilometrosRecorridos += (calculadoraDeDistancia.distancia(ciudad,unDestino))
 		}
 	}
 	
 	method kilometrosDisponibles(){
-		return destinosQueConoce.sum({unDestino => unDestino.precio()}) * 0.1
+		return viajes.sum({unDestino => unDestino.precio()}) * 0.1
 	}
 	
 	method seguirA(unUsuario){
@@ -106,6 +121,20 @@ class Usuario{
 	}
 }
 
+class MedioDeTransporte{
+	
+	var property factorTiempo = 1
+	var property factorCosto = 1
+	
+	method tiempo(kilometros){
+		return kilometros*factorTiempo
+	}
+	
+	method precio(ciudadA,ciudadB){
+		var kilometros = calculadoraDeDistancia.distancia(ciudadA,ciudadB)
+		return kilometros*factorCosto	
+	}
+}
 /** Aca creo una clase destino, todos los demas destinos se pueden instanciar por consola, por el momento los dejo comentados */
 /** Tambien creo la clase usuario con lo cual elimino a pHairi */
 /** 
