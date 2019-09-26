@@ -1,6 +1,6 @@
 /** First Wollok example */
 object barrileteCosmico {
-	var destinos = #{garlicSea,silverSea,lastToninas,goodAirs}
+	var destinos = #{}
 	var usuarios = #{}
 	
 	method usuarios(){
@@ -34,6 +34,81 @@ object barrileteCosmico {
 	}
 }
 
+class Destino{
+	var property equipaje = []
+	var property precio = 0
+	var property nombre = ""
+	
+	method destacado(){
+		return precio>2000
+	}
+	method agregarAlEquipaje(elemento){
+		equipaje.add(elemento)
+	}
+	
+	method descuento(porcentaje){
+		var aux = porcentaje/100
+		precio = precio - (aux*precio)
+		self.agregarAlEquipaje("Certificado de descuento")
+	}
+	
+	method esPeligroso(){
+		return equipaje.any({unEquipaje => unEquipaje.contains("Vacuna")})
+	}
+	
+}
+
+class Usuario{
+
+	
+	var destinosQueConoce = []
+	var saldo = 1500
+	var sigueA = #{}
+	
+	method conoceDestinos(){
+		return destinosQueConoce
+	}
+	
+	method saldo(){
+		return saldo
+	}
+	
+	method agregarDestino(unDestino){
+		destinosQueConoce.add(unDestino)
+	}
+	
+	method puedeViajarA(unDestino){
+		return (saldo - unDestino.precio()) >= 0
+	}
+	
+	method pagarViajeA(unDestino){
+		saldo -= unDestino.precio()
+	}
+	
+	method viajarA(unDestino){
+		if(self.puedeViajarA(unDestino)){
+			self.agregarDestino(unDestino)
+			self.pagarViajeA(unDestino)
+		}
+	}
+	
+	method kilometrosDisponibles(){
+		return destinosQueConoce.sum({unDestino => unDestino.precio()}) * 0.1
+	}
+	
+	method seguirA(unUsuario){
+		sigueA.add(unUsuario)
+	}
+	
+	method seguirUsuario(unUsuario){
+		unUsuario.seguirA(self)
+		self.seguirA(unUsuario)
+	}
+}
+
+/** Aca creo una clase destino, todos los demas destinos se pueden instanciar por consola, por el momento los dejo comentados */
+/** Tambien creo la clase usuario con lo cual elimino a pHairi */
+/** 
 object garlicSea{
 	var equipaje = ["Caña de pescar","Piloto"]
 	var precio = 2500
@@ -165,49 +240,5 @@ object goodAirs{
 	}
 }
 
-object pHairi {
-	
-	var conoceDestinos = [lastToninas, goodAirs]
-	var saldo = 1500
-	var sigueA = #{}
-	
-	method conoceDestinos(){
-		return conoceDestinos
-	}
-	
-	method saldo(){
-		return saldo
-	}
-	
-	method agregarDestino(unDestino){
-		conoceDestinos.add(unDestino)
-	}
-	
-	method puedeViajarA(unDestino){
-		return (saldo - unDestino.precio()) >= 0
-	}
-	
-	method pagarViajeA(unDestino){
-		saldo -= unDestino.precio()
-	}
-	
-	method viajarA(unDestino){
-		if(self.puedeViajarA(unDestino)){
-			self.agregarDestino(unDestino)
-			self.pagarViajeA(unDestino)
-		}
-	}
-	
-	method kilometrosDisponibles(){
-		return conoceDestinos.sum({unDestino => unDestino.precio()}) * 0.1
-	}
-	
-	method seguirA(unUsuario){
-		sigueA.add(unUsuario)
-	}
-	
-	method seguirUsuario(unUsuario){
-		unUsuario.seguirA(self)
-		self.seguirA(unUsuario)
-	}
-}
+*/
+
