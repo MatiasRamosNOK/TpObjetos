@@ -8,7 +8,13 @@ class Usuario{
 	var property ciudad
 	var property metodoDeTransporte
 	var kilometrosRecorridos = 0
-	
+	constructor(viajes_,saldo_,sigueA_,ciudad_,metodoDeTransporte_){
+		viajes = viajes_
+		saldo = saldo_
+		sigueA = sigueA_
+		ciudad = ciudad_
+		metodoDeTransporte = metodoDeTransporte_
+	}
 	method conoceDestinos(){
 		return viajes
 	}

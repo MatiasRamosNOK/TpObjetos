@@ -85,8 +85,13 @@ object calculadoraDeDistancia{
 
 class MedioDeTransporte{
 	
-	var property factorTiempo = 1
-	var property factorCosto = 1
+	var property factorTiempo
+	var property factorCosto
+	constructor(factorTiempo_,factorCosto_)
+	{
+		factorTiempo = factorTiempo_
+		factorCosto = factorCosto_
+	}
 	
 	method tiempo(kilometros){
 		return kilometros*factorTiempo
