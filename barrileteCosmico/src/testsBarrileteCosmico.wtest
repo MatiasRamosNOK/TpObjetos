@@ -25,6 +25,10 @@ test "Obtener destinos mas importantes de Barrilete Cosmico" {
 
 }
 
+test "Last Toninas y Silver Sea estan a 100km de distancia entre ellas" {
+	assert.equals(100, calculadoraDeDistancia.distancia(lastToninas, silverSea))
+}
+
 test "Aplicar 25% de descuento a Last Toninas" 
 {
 	lastToninas.descuento(25)
@@ -63,11 +67,12 @@ test "Saber si barrilete cosmico es una empresa extrema"
 
 test "Conocer la carta de destinos de Barrilete Cosmico"
 {
-	assert.equals(["Good Airs","Silver's Sea","Last Toninas","Garlic's Sea"],barrileteCosmico.nombresDeDestinos())
+	assert.that(["Garlic's Sea","Silver's Sea","Last Toninas","Good Airs"].all{unLugar => barrileteCosmico.nombresDeDestinos().contains(unLugar)})
 }
 
 test"Saber el precio de viajar desde Last Toninas a Silver's Sea"
 {
 	assert.equals(100,unTransporte.precio(lastToninas,silverSea))
 }
+
 }

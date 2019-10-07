@@ -12,14 +12,14 @@ describe "Test usuarios" {
 		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
 		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
 		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
-		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 1500, "Good Airs", 400)
+		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 500, "Good Airs", 400)
 		unTransporte = new MedioDeTransporte(1,1)
 		pHairi = new Usuario([lastToninas,goodAirs],1500,#{},lastToninas,unTransporte)
 	}
 	
 test "Obtener las millas de PHari"
 {
-	assert.equals(500,pHairi.kilometrosDisponibles())
+	assert.equals(400,pHairi.kilometrosDisponibles())
 }
 
 test "Hacer que PHari vuele a Silver 's Sea. Puede viajar y contiene en su historial"

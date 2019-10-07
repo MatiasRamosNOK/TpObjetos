@@ -3,7 +3,7 @@ import example.*
 class Usuario{
 
 	var viajes = []
-	var saldo = 1500
+	var saldo 
 	var sigueA = #{}
 	var property ciudad
 	var property metodoDeTransporte

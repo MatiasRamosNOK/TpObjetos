@@ -3,7 +3,6 @@ import usuarios.*
 object barrileteCosmico {
 	var destinos = #{}
 	var usuarios = #{}
-	var mediosDeTransporte = #{}
 	
 	
 	method usuarios(){
@@ -48,8 +47,8 @@ object barrileteCosmico {
 
 class Localidad{
 	var property equipaje = []
-	var precio = 0
-	var property nombre = ""
+	var precio 
+	var property nombre 
 	var property kilometraje
 	
 	constructor (equipaje_,precio_, nombre_, kilometraje_){
