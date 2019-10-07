@@ -23,6 +23,10 @@ class Usuario{
 		return saldo
 	}
 	
+	method kilometrosRecorridos(){
+		return kilometrosRecorridos
+	}
+	
 	method agregarDestino(unDestino){
 		viajes.add(unDestino)
 	}
@@ -37,16 +41,20 @@ class Usuario{
 	
 	method viajarA(unDestino){
 		if(self.puedeViajarA(unDestino)){
+			kilometrosRecorridos += self.distanciaAlDestino(unDestino)
 			self.agregarDestino(unDestino)
 			self.pagarViajeA(unDestino)
 			self.ciudad(unDestino)
-			kilometrosRecorridos += (calculadoraDeDistancia.distancia(ciudad,unDestino))
+		}else{
+			
 		}
 	}
 	
 	method kilometrosDisponibles(){
 		return viajes.sum({unDestino => unDestino.precio()}) * 0.1
 	}
+	
+	
 	
 	method seguirA(unUsuario){
 		sigueA.add(unUsuario)
@@ -55,5 +63,9 @@ class Usuario{
 	method seguirUsuario(unUsuario){
 		unUsuario.seguirA(self)
 		self.seguirA(unUsuario)
+	}
+	
+	method distanciaAlDestino(unaCiudad){
+		return (unaCiudad.kilometraje() - ciudad.kilometraje()).abs()
 	}
 }

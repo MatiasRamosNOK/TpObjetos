@@ -5,6 +5,7 @@ describe "Test barrilete cosmico"{
 	var silverSea
 	var lastToninas
 	var goodAirs
+	var unTransporte
 	fixture{
 		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
 		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
@@ -15,6 +16,7 @@ describe "Test barrilete cosmico"{
 		barrileteCosmico.agregarDestinos(silverSea)
 		barrileteCosmico.agregarDestinos(lastToninas)
 		barrileteCosmico.agregarDestinos(goodAirs)
+		unTransporte = new MedioDeTransporte(1,1)
 	}
 	
 test "Obtener destinos mas importantes de Barrilete Cosmico" {
@@ -49,7 +51,7 @@ test "Aplicar descuento del 15% a todos los destino de Barrilete Cosmico"
 	assert.equals(1275,goodAirs.precio())
 }
 
-test "Obtener los detinos mas peligroso hasta el momento"
+test "Obtener los destinos mas peligrosos hasta el momento"
 {
 	assert.equals(#{lastToninas},barrileteCosmico.destinos().filter({unDestino =>unDestino.esPeligroso()}))
 }
@@ -61,7 +63,11 @@ test "Saber si barrilete cosmico es una empresa extrema"
 
 test "Conocer la carta de destinos de Barrilete Cosmico"
 {
-	assert.equals(["Silver's Sea","Last Toninas","Good Airs","Garlic's Sea"],barrileteCosmico.destinos())
+	assert.equals(["Good Airs","Silver's Sea","Last Toninas","Garlic's Sea"],barrileteCosmico.nombresDeDestinos())
 }
 
+test"Saber el precio de viajar desde Last Toninas a Silver's Sea"
+{
+	assert.equals(100,unTransporte.precio(lastToninas,silverSea))
+}
 }

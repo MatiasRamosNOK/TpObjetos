@@ -1,4 +1,5 @@
 /** First Wollok example */
+import usuarios.*
 object barrileteCosmico {
 	var destinos = #{}
 	var usuarios = #{}
@@ -7,6 +8,11 @@ object barrileteCosmico {
 	
 	method usuarios(){
 		return usuarios
+	}
+	
+	method destinos()
+	{
+		return destinos
 	}
 	
 	method agregarUser(userName){
@@ -31,7 +37,7 @@ object barrileteCosmico {
 		return self.destinosImportantes().any({unDestino => unDestino.esPeligroso()})
 	}
 	
-	method destinos(){
+	method nombresDeDestinos(){
 		return destinos.map({destino => destino.nombre()});
 	}
 	
@@ -42,7 +48,7 @@ object barrileteCosmico {
 
 class Localidad{
 	var property equipaje = []
-	var property precio = 0
+	var precio = 0
 	var property nombre = ""
 	var property kilometraje
 	
@@ -51,6 +57,10 @@ class Localidad{
 		precio = precio_
 		nombre = nombre_
 		kilometraje = kilometraje_
+	}
+	
+	method precio(){
+		return precio
 	}
 	
 	method destacado(){
