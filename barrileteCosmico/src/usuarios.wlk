@@ -49,13 +49,7 @@ class Usuario{
 			
 		}
 	}
-	
-	method kilometrosDisponibles(){
-		return viajes.sum({unDestino => unDestino.precio()}) * 0.1
-	}
-	
-	
-	
+		
 	method seguirA(unUsuario){
 		sigueA.add(unUsuario)
 	}
