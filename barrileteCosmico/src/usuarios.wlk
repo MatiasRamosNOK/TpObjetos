@@ -1,5 +1,7 @@
 import example.*
 
+class UserException inherits Exception { }
+
 class Usuario{
 
 	var viajes = []
@@ -46,7 +48,7 @@ class Usuario{
 			self.pagarViajeA(unDestino)
 			self.ciudad(unDestino)
 		}else{
-			
+			throw new UserException(message = "No puede viajar,no posee suficiente saldo")
 		}
 	}
 		
