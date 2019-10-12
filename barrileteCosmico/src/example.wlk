@@ -94,20 +94,20 @@ object calculadoraDeDistancia{
 
 class MedioDeTransporte{
 	
-	var property factorTiempo
-	var property factorCosto
-	constructor(factorTiempo_,factorCosto_)
+	var property tiempoDeViaje
+	var property precioPorKM
+	constructor(_tiempoDeViaje,_precioPorKM)
 	{
-		factorTiempo = factorTiempo_
-		factorCosto = factorCosto_
+		tiempoDeViaje = _tiempoDeViaje
+		precioPorKM = _precioPorKM
 	}
 	
 	method tiempo(kilometros){
-		return kilometros*factorTiempo
+		return kilometros*tiempoDeViaje
 	}
 	
 	method precio(ciudadA,ciudadB){
 		var kilometros = calculadoraDeDistancia.distancia(ciudadA,ciudadB)
-		return kilometros*factorCosto	
+		return kilometros*precioPorKM	
 	}
 }
