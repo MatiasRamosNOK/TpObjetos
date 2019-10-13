@@ -8,16 +8,13 @@ class Usuario{
 	var saldo 
 	var sigueA = #{}
 	var property ciudad
-	var property metodoDeTransporte
-	var kilometrosRecorridos = 0
 	constructor(viajes_,saldo_,sigueA_,ciudad_,metodoDeTransporte_){
 		viajes = viajes_
 		saldo = saldo_
 		sigueA = sigueA_
 		ciudad = ciudad_
-		metodoDeTransporte = metodoDeTransporte_
 	}
-	method conoceDestinos(){
+	method conoceViajes(){
 		return viajes
 	}
 	
@@ -26,27 +23,31 @@ class Usuario{
 	}
 	
 	method kilometrosRecorridos(){
-		return kilometrosRecorridos
+		return viajes.sum({viaje => viaje.distanciaDeViaje()})
 	}
 	
-	method agregarDestino(unDestino){
+	method agregarViaje(unDestino){
 		viajes.add(unDestino)
 	}
 	
-	method puedeViajarA(unDestino){
-		return (saldo - unDestino.precio() - metodoDeTransporte.precio(ciudad,unDestino)) >= 0
+	method puedePagarElViaje(unViaje){
+		return (saldo - unViaje.costoDeViaje()) >= 0
 	}
 	
-	method pagarViajeA(unDestino){
-		saldo -= unDestino.precio()
+	method pagarViajeA(unViaje){
+		saldo -= unViaje.costoDeViaje()
 	}
 	
-	method viajarA(unDestino){
-		if(self.puedeViajarA(unDestino)){
-			kilometrosRecorridos += self.distanciaAlDestino(unDestino)
-			self.agregarDestino(unDestino)
-			self.pagarViajeA(unDestino)
-			self.ciudad(unDestino)
+	method nuevaCiudadDeOrigenPorViaje(unViaje){
+		self.ciudad(unViaje.destino())
+	}
+	
+
+	method haceUnViaje(unViaje){
+		if(self.puedePagarElViaje(unViaje)){
+			self.agregarViaje(unViaje)
+			self.pagarViajeA(unViaje)
+			self.nuevaCiudadDeOrigenPorViaje(unViaje)
 		}else{
 			throw new UserException(message = "No puede viajar,no posee suficiente saldo")
 		}
@@ -62,6 +63,6 @@ class Usuario{
 	}
 	
 	method distanciaAlDestino(unaCiudad){
-		return (unaCiudad.kilometraje() - ciudad.kilometraje()).abs()
+		return ciudad.distanciaHasta(unaCiudad)
 	}
 }
