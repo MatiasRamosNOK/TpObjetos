@@ -8,6 +8,7 @@ describe "Test usuarios" {
 	var goodAirs
 	var unTransporte
 	var viajeGaAS
+	var usuarioSinDinero
 	fixture
 	{
 		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
@@ -17,6 +18,7 @@ describe "Test usuarios" {
 		unTransporte = new MedioDeTransporte(1,1)
 		viajeGaAS = new Viaje(garlicSea,silverSea,unTransporte)
 		pHairi = new Usuario([],1500,#{},garlicSea,unTransporte)
+		usuarioSinDinero = new Usuario([],0,#{},garlicSea,unTransporte)
 	}
 	
 test "Obtener las millas de PHari"
@@ -50,5 +52,9 @@ test "Hacer que PHairi vuele de lastToninas a Silver's Sea y saber su distancia 
 	assert.equals(100, pHairi.kilometrosRecorridos())
 }
 
+test "El usuario no puede hacer el viaje"
+{
+	assert.throwsExceptionWithMessage("No puede viajar,no posee suficiente saldo", {usuarioSinDinero.haceUnViaje(viajeGaAS)})
+}
 	
 }
