@@ -6,17 +6,20 @@ describe "Test barrilete cosmico"{
 	var lastToninas
 	var goodAirs
 	var unTransporte
+	var viajeGaAS
 	fixture{
 		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
 		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
 		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
 		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 1500, "Good Airs", 400)
+		
 	
 		barrileteCosmico.agregarDestinos(garlicSea)
 		barrileteCosmico.agregarDestinos(silverSea)
 		barrileteCosmico.agregarDestinos(lastToninas)
 		barrileteCosmico.agregarDestinos(goodAirs)
-		unTransporte = new MedioDeTransporte(1,1)
+		unTransporte = new MedioDeTransporte(2,2)
+		viajeGaAS = new Viaje(garlicSea,silverSea,unTransporte)
 	}
 	
 test "Obtener destinos mas importantes de Barrilete Cosmico" {
@@ -70,9 +73,14 @@ test "Conocer la carta de destinos de Barrilete Cosmico"
 	assert.that(["Garlic's Sea","Silver's Sea","Last Toninas","Good Airs"].all{unLugar => barrileteCosmico.nombresDeDestinos().contains(unLugar)})
 }
 
-test"Saber el precio de viajar desde Last Toninas a Silver's Sea"
+test"Saber el precio de viajar desde Garlic's Sea a Silver's Sea"
 {
-	assert.equals(100,unTransporte.precio(lastToninas,silverSea))
+	assert.equals(200,viajeGaAS.costoDeViaje())
+}
+
+test "Saber la distancia recorrida del viaje entre Garlic's Sea y Silver's Sea"
+{
+	assert.equals(100,viajeGaAS.distanciaDeViaje())
 }
 
 }

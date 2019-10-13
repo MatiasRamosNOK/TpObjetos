@@ -7,12 +7,12 @@ class Usuario{
 	var viajes = []
 	var saldo 
 	var sigueA = #{}
-	var property ciudad
-	constructor(viajes_,saldo_,sigueA_,ciudad_,metodoDeTransporte_){
+	var property ciudadOrigen
+	constructor(viajes_,saldo_,sigueA_,ciudadOrigen_,metodoDeTransporte_){
 		viajes = viajes_
 		saldo = saldo_
 		sigueA = sigueA_
-		ciudad = ciudad_
+		ciudadOrigen = ciudadOrigen_
 	}
 	method conoceViajes(){
 		return viajes
@@ -39,7 +39,7 @@ class Usuario{
 	}
 	
 	method nuevaCiudadDeOrigenPorViaje(unViaje){
-		self.ciudad(unViaje.destino())
+		self.ciudadOrigen(unViaje.destino())
 	}
 	
 
@@ -63,6 +63,6 @@ class Usuario{
 	}
 	
 	method distanciaAlDestino(unaCiudad){
-		return ciudad.distanciaHasta(unaCiudad)
+		return calculadoraDeDistancia.distancia(ciudadOrigen,unaCiudad)
 	}
 }

@@ -7,6 +7,7 @@ describe "Test usuarios" {
 	var lastToninas
 	var goodAirs
 	var unTransporte
+	var viajeGaAS
 	fixture
 	{
 		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
@@ -14,37 +15,38 @@ describe "Test usuarios" {
 		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
 		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 500, "Good Airs", 400)
 		unTransporte = new MedioDeTransporte(1,1)
-		pHairi = new Usuario([lastToninas,goodAirs],1500,#{},lastToninas,unTransporte)
+		viajeGaAS = new Viaje(garlicSea,silverSea,unTransporte)
+		pHairi = new Usuario([],1500,#{},garlicSea,unTransporte)
 	}
 	
 test "Obtener las millas de PHari"
 {
-	assert.equals(400,pHairi.kilometrosDisponibles())
+	pHairi.haceUnViaje(viajeGaAS)
+	assert.equals(100,pHairi.kilometrosRecorridos())
 }
 
 test "Hacer que PHari vuele a Silver 's Sea. Puede viajar y contiene en su historial"
 {
-	assert.that(pHairi.puedeViajarA(silverSea))
-	pHairi.viajarA(silverSea)
-	assert.that(pHairi.conoceDestinos().contains(silverSea))
+	assert.that(pHairi.puedePagarElViaje(viajeGaAS))
+	pHairi.haceUnViaje(viajeGaAS)
+	assert.that(pHairi.conoceViajes().contains(viajeGaAS))
 }
 
-test "Hacer que PHari vuele a Silver 's Sea. Le queda 150 en su saldo"
+test "Hacer que PHari vuele a Silver 's Sea. Le queda 1400 en su saldo"
 {
-	pHairi.viajarA(silverSea)
-	assert.equals(150,pHairi.saldo())
+	pHairi.haceUnViaje(viajeGaAS)
+	assert.equals(1400,pHairi.saldo())
 }
 
 test "Hacer que PHari vuele a Silver's y su nueva ciudad sea Silver's Sea"
 {
-	pHairi.ciudad(lastToninas)
-	pHairi.viajarA(silverSea)
-	assert.equals(silverSea,pHairi.ciudad())
+	pHairi.haceUnViaje(viajeGaAS)
+	assert.equals(silverSea,pHairi.ciudadOrigen())
 }
 
 test "Hacer que PHairi vuele de lastToninas a Silver's Sea y saber su distancia recorrida"
 {
-	pHairi.viajarA(goodAirs)
+	pHairi.haceUnViaje(viajeGaAS)
 	assert.equals(100, pHairi.kilometrosRecorridos())
 }
 

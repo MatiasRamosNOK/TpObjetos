@@ -3,8 +3,7 @@ import usuarios.*
 object barrileteCosmico {
 	var destinos = #{}
 	var usuarios = #{}
-	
-	
+	var mediosDeTransporte = #{}
 	method usuarios(){
 		return usuarios
 	}
@@ -42,6 +41,11 @@ object barrileteCosmico {
 	
 	method agregarDestinos(nuevoDestino){
 		destinos.add(nuevoDestino)
+	}
+	
+	method nuevoViaje(usuario,localidadDestino)
+	{
+		usuario.haceUnViaje(new Viaje(usuario.ciudadOrigen(),localidadDestino,mediosDeTransporte.anyOne()))
 	}
 }
 
@@ -96,6 +100,13 @@ class Viaje{
 	var property origen
 	var property destino
 	var property transporte
+	
+	constructor(origen_,destino_,transporte_)
+	{
+		origen = origen_
+		destino = destino_
+		transporte = transporte_
+	}
 	
 	method distanciaDeViaje(){
 		return origen.distanciaHasta(destino)
