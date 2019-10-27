@@ -5,7 +5,7 @@ describe "Test barrilete cosmico"{
 	var silverSea
 	var lastToninas
 	var goodAirs
-	var unTransporte
+	var unAvion
 	var viajeGaAS
 	fixture{
 		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
@@ -18,8 +18,9 @@ describe "Test barrilete cosmico"{
 		barrileteCosmico.agregarDestinos(silverSea)
 		barrileteCosmico.agregarDestinos(lastToninas)
 		barrileteCosmico.agregarDestinos(goodAirs)
-		unTransporte = new MedioDeTransporte(2,2)
-		viajeGaAS = new Viaje(garlicSea,silverSea,unTransporte)
+		
+		unAvion = new Avion(2,2,[new Turbina(20),new Turbina(40),new Turbina(140)])
+		viajeGaAS = new Viaje(garlicSea,silverSea,unAvion)
 	}
 	
 test "Obtener destinos mas importantes de Barrilete Cosmico" {

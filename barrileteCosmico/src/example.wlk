@@ -119,13 +119,23 @@ class Viaje{
 
 
 class Avion{
-	var property impulsoDeTurbina
 	var property tiempoDeViaje
-	var property precioPorKM
-	constructor(_tiempoDeViaje,_precioPorKM,_impulsoDeTurbina)
+	var property turbinas
+	constructor(_tiempoDeViaje,_precioPorKM,_turbinas)
 	{
 		tiempoDeViaje = _tiempoDeViaje
-		precioPorKM = _precioPorKM
+		turbinas = _turbinas 
+	}
+	
+	method precioPorKM(){
+		return turbinas.sum({turbina => turbina.impulsoDeTurbina()})
+	}
+}
+
+class Turbina{
+	var property impulsoDeTurbina
+	constructor(_impulsoDeTurbina)
+	{
 		impulsoDeTurbina = _impulsoDeTurbina
 	}
 }
