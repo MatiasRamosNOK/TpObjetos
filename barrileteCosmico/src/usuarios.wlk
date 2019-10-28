@@ -7,6 +7,7 @@ class Usuario{
 	var viajes = []
 	var saldo 
 	var sigueA = #{}
+	var property asistenciaViajero;
 	var property ciudadOrigen
 	constructor(viajes_,saldo_,sigueA_,ciudadOrigen_,_tipoDeUsuario){
 		viajes = viajes_
@@ -67,6 +68,7 @@ class Usuario{
 		return calculadoraDeDistancia.distancia(ciudadOrigen,unaCiudad)
 	}
 	
+
 	method metodoDeTransporte(){
 		return tipoDeUsuario.elegirMetodoDeTransporte(self)
 	}
@@ -88,4 +90,5 @@ object usuarioGrupoFamiliar {
 	method elegirMetodoDeTransporte(unUsuario){
 		return barrileteCosmico.mediosDeTransporte().anyOne()
 	}
+
 }

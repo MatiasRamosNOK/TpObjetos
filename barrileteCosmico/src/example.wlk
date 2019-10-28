@@ -172,3 +172,46 @@ class Barco{
 		return 1000*probabilidadDeChoqueConIceberg
 	}
 }
+
+class Playas inherits Localidad{
+	
+	
+	override method esPeligroso(){
+		return false;
+	}
+	
+	override method destacado(){
+		return true
+	}
+	
+}
+
+class Montanias inherits Localidad{
+	
+	var property altura;
+	
+	override method esPeligroso(){
+		return altura>5000;
+	}
+	
+	override method destacado(){
+		return true
+	}
+}
+
+class CiudadHistorica inherits Localidad{
+	
+	var listaDeMuseos = []
+	
+	method agregarMuseo(unMuseo){
+		listaDeMuseos.add(unMuseo)
+	}
+	
+	override method esPeligroso(){
+		return equipaje.contains("AsistenciaDeViajero")
+	}
+	
+	override method destacado(){
+		return listaDeMuseos.size()>3
+	}
+}
