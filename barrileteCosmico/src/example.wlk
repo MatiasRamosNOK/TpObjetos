@@ -3,7 +3,7 @@ import usuarios.*
 object barrileteCosmico {
 	var destinos = #{}
 	var usuarios = #{}
-	var mediosDeTransporte = #{}
+	var property mediosDeTransporte = #{}
 	method usuarios(){
 		return usuarios
 	}
@@ -45,7 +45,7 @@ object barrileteCosmico {
 	
 	method nuevoViaje(usuario,localidadDestino)
 	{
-		usuario.haceUnViaje(new Viaje(usuario.ciudadOrigen(),localidadDestino,mediosDeTransporte.anyOne()))
+		usuario.haceUnViaje(new Viaje(usuario.ciudadOrigen(),localidadDestino,usuario.metodoDeTransporte()))
 	}
 }
 

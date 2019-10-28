@@ -7,18 +7,28 @@ describe "Test usuarios" {
 	var lastToninas
 	var goodAirs
 	var unAvion
+	var unMicro
+	var unBarco
+	var unTren
 	var viajeGaAS
 	var usuarioSinDinero
+	var estudiante
 	fixture
 	{
 		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
 		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
 		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
 		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 500, "Good Airs", 400)
-		unAvion = new Avion(2,2,[new Turbina(20),new Turbina(40),new Turbina(140)])
+		unAvion = new Avion(2,2,[new Turbina(600),new Turbina(400),new Turbina(600)])
+		unMicro = new Micro(5)
+		unTren = new Tren(3)
+		unBarco = new Barco(3,2)
 		viajeGaAS = new Viaje(garlicSea,silverSea,unAvion)
-		pHairi = new Usuario([],1500,#{},garlicSea,unAvion)
-		usuarioSinDinero = new Usuario([],0,#{},garlicSea,unAvion)
+		pHairi = new Usuario([],200000,#{},garlicSea,usuarioEmpresario)
+		usuarioSinDinero = new Usuario([],0,#{},garlicSea,usuarioGrupoFamiliar)
+		estudiante = new Usuario([],1500,#{},garlicSea,usuarioEstudiantil)
+		
+		barrileteCosmico.mediosDeTransporte(#{unAvion,unMicro,unTren,unBarco})
 	}
 	
 test "Obtener las millas de PHari"
@@ -34,10 +44,10 @@ test "Hacer que PHari vuele a Silver 's Sea. Puede viajar y contiene en su histo
 	assert.that(pHairi.conoceViajes().contains(viajeGaAS))
 }
 
-test "Hacer que PHari vuele a Silver 's Sea. Le queda 1400 en su saldo"
+test "Hacer que PHari vuele a Silver 's Sea. Le queda 40000 en su saldo"
 {
 	pHairi.haceUnViaje(viajeGaAS)
-	assert.equals(1400,pHairi.saldo())
+	assert.equals(40000,pHairi.saldo())
 }
 
 test "Hacer que PHari vuele a Silver's y su nueva ciudad sea Silver's Sea"
@@ -56,5 +66,20 @@ test "El usuario no puede hacer el viaje"
 {
 	assert.throwsExceptionWithMessage("No puede viajar,no posee suficiente saldo", {usuarioSinDinero.haceUnViaje(viajeGaAS)})
 }
-	
+
+test "Hacer que PHairi, que es un usuario de tipo empresario, elija el metodo de transporte mas rapido, avion"
+{
+	assert.equals(unAvion,pHairi.metodoDeTransporte())
+}
+
+test "Hacer que PHairi cambie a un planFamiliar"
+{
+	pHairi.tipoDeUsuario(usuarioGrupoFamiliar)
+	assert.equals(usuarioGrupoFamiliar,pHairi.tipoDeUsuario())
+}
+
+test "El estudiante debe elegir el metodo de transporte mas rapido que entre dentro de su presupuesto"{
+	assert.equals(unTren,estudiante.metodoDeTransporte())
+}
+
 }
