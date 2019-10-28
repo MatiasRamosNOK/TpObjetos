@@ -6,7 +6,7 @@ describe "Test usuarios" {
 	var silverSea
 	var lastToninas
 	var goodAirs
-	var unTransporte
+	var unAvion
 	var viajeGaAS
 	var usuarioSinDinero
 	fixture
@@ -15,10 +15,10 @@ describe "Test usuarios" {
 		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
 		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
 		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 500, "Good Airs", 400)
-		unTransporte = new MedioDeTransporte(1,1)
-		viajeGaAS = new Viaje(garlicSea,silverSea,unTransporte)
-		pHairi = new Usuario([],1500,#{},garlicSea,unTransporte)
-		usuarioSinDinero = new Usuario([],0,#{},garlicSea,unTransporte)
+		unAvion = new Avion(2,2,[new Turbina(20),new Turbina(40),new Turbina(140)])
+		viajeGaAS = new Viaje(garlicSea,silverSea,unAvion)
+		pHairi = new Usuario([],1500,#{},garlicSea,unAvion)
+		usuarioSinDinero = new Usuario([],0,#{},garlicSea,unAvion)
 	}
 	
 test "Obtener las millas de PHari"
