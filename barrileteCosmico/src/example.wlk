@@ -132,7 +132,7 @@ class Avion{
 	}
 }
 
-class Turbina{
+class Turbina{ // usar lista de numeros en vez de clase
 	var property impulsoDeTurbina
 	constructor(_impulsoDeTurbina)
 	{
@@ -151,7 +151,7 @@ class Micro{
 
 class Tren{
 	var property tiempoDeViaje
-	var property precioPorKM = 1437 //1 Milla = 1.6 KM
+	var property precioPorKM = 1000 * 1.6 //1 Milla = 1.6 KM
 	constructor(_tiempoDeViaje)
 	{
 		tiempoDeViaje = _tiempoDeViaje
@@ -191,19 +191,17 @@ class Montanias inherits Localidad{
 	var property altura;
 	
 	override method esPeligroso(){
-		return altura>5000;
+		return altura>5000 and super();
 	}
 	
-	override method destacado(){
-		return true
-	}
+
 }
 
 class CiudadHistorica inherits Localidad{
 	
-	var listaDeMuseos = []
+	var listaDeMuseos = [] //usar contador en ves de lista
 	
-	method agregarMuseo(unMuseo){
+	method agregarMuseo(unMuseo){ //sacar argumentos y sumar al contador 
 		listaDeMuseos.add(unMuseo)
 	}
 	
@@ -215,3 +213,23 @@ class CiudadHistorica inherits Localidad{
 		return listaDeMuseos.size()>3
 	}
 }
+
+
+/* como heredar constructor dentro de un constructor
+
+class A {
+	var property nombre
+	
+	constructor(unNombre){
+		nombre = unNombre
+	}
+}
+
+class B inherits A {
+	var property edad
+	
+	constructor(unNombre, unaEdad) = super(unNombre){
+		edad = unaEdad
+	}
+}
+*/

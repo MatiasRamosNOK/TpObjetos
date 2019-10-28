@@ -74,6 +74,8 @@ class Usuario{
 	}
 }
 
+// delegar l0s siguientes 3 metodos a barrilete cosmico
+
 object usuarioEmpresario {
 	method elegirMetodoDeTransporte(unUsuario){
 		return barrileteCosmico.mediosDeTransporte().min({transporte => transporte.tiempoDeViaje()})
