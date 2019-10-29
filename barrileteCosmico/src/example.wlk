@@ -195,10 +195,10 @@ class Montanias inherits Localidad{
 
 class CiudadHistorica inherits Localidad{
 	
-	var listaDeMuseos = [] //usar contador en ves de lista
+	var contadorDeMuseos = 0
 	
-	method agregarMuseo(unMuseo){ //sacar argumentos y sumar al contador 
-		listaDeMuseos.add(unMuseo)
+	method agregarMuseo(){ 
+		contadorDeMuseos += 1
 	}
 	
 	override method esPeligroso(){
