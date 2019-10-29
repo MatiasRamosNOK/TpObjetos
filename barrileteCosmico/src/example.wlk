@@ -47,6 +47,18 @@ object barrileteCosmico {
 	{
 		usuario.haceUnViaje(new Viaje(usuario.ciudadOrigen(),localidadDestino,usuario.metodoDeTransporte()))
 	}
+	
+	method transporteEmpresario(){
+		return self.mediosDeTransporte().min({transporte => transporte.tiempoDeViaje()})
+	}
+	
+	method transporteEstudiantil(unUsuario){
+			return self.mediosDeTransporte().filter({transporte => transporte.precioPorKM()<unUsuario.saldo()}).min({unTransporte => unTransporte.tiempoDeViaje()})
+	}
+	
+	method transporteGrupoFamiliar(){
+		return self.mediosDeTransporte().anyOne()
+	}
 }
 
 class Localidad{
@@ -206,7 +218,7 @@ class CiudadHistorica inherits Localidad{
 	}
 	
 	override method destacado(){
-		return listaDeMuseos.size()>3
+		return contadorDeMuseos>3
 	}
 }
 

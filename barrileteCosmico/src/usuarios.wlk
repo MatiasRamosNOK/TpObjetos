@@ -74,23 +74,22 @@ class Usuario{
 	}
 }
 
-// delegar l0s siguientes 3 metodos a barrilete cosmico
 
 object usuarioEmpresario {
 	method elegirMetodoDeTransporte(unUsuario){
-		return barrileteCosmico.mediosDeTransporte().min({transporte => transporte.tiempoDeViaje()})
+		return barrileteCosmico.transporteEmpresario()
 	}
 }
 
 object usuarioEstudiantil {
 	method elegirMetodoDeTransporte(unUsuario){
-		return barrileteCosmico.mediosDeTransporte().filter({transporte => transporte.precioPorKM()<unUsuario.saldo()}).min({unTransporte => unTransporte.tiempoDeViaje()})
+		return barrileteCosmico.transporteEstudiantil(unUsuario)
 	}
 }
 
 object usuarioGrupoFamiliar {
 	method elegirMetodoDeTransporte(unUsuario){
-		return barrileteCosmico.mediosDeTransporte().anyOne()
+		return barrileteCosmico.transporteGrupoFamiliar()
 	}
 
 }
