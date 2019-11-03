@@ -1,0 +1,61 @@
+import barrileteCosmico.*
+import localidades.*
+import mediosDeTransporte.*
+
+describe "Test barrilete cosmico"{
+	var garlicSea
+	var silverSea
+	var lastToninas
+	var goodAirs
+	var unAvion
+	var unMicro
+	var unTren
+	var unBarco
+	var viajeGaAS
+	fixture{
+		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
+		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
+		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
+		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 1500, "Good Airs", 400)
+		
+	
+		barrileteCosmico.agregarDestinos(garlicSea)
+		barrileteCosmico.agregarDestinos(silverSea)
+		barrileteCosmico.agregarDestinos(lastToninas)
+		barrileteCosmico.agregarDestinos(goodAirs)
+		
+		unAvion = new Avion(2)
+		unMicro = new Micro(2)
+		unTren = new Tren(2)
+		unBarco = new Barco(2,2)
+		viajeGaAS = new Viaje(garlicSea,silverSea,unAvion)
+		unAvion.agregarTurbina(20)
+		unAvion.agregarTurbina(40)
+		unAvion.agregarTurbina(140)
+	}
+	
+
+
+test "El costo por KM de viajar en Avion es de 200"
+{
+	assert.equals(200, unAvion.precioPorKM())
+}
+
+test "El costo por KM de viajar en Micro es de 5000"{
+	assert.equals(5000, unMicro.precioPorKM())
+}
+
+
+
+test "El costo por KM de viajar en Tren es de 1600"{
+	assert.equals(1600, unTren.precioPorKM())
+}
+
+
+
+test "El costo por KM de viajar en Barco es de 1000"{
+	assert.equals(2000, unBarco.precioPorKM())
+}
+
+}
+

@@ -1,5 +1,7 @@
 import usuarios.*
-import example.*
+import barrileteCosmico.*
+import localidades.*
+import mediosDeTransporte.*
 describe "Test usuarios" {
 	var pHairi
 	var garlicSea
@@ -23,18 +25,21 @@ describe "Test usuarios" {
 		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
 		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 500, "Good Airs", 400)
 		playasDeSilverSea = new Playas(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
-		unAvion = new Avion(2,2,[new Turbina(600),new Turbina(400),new Turbina(600)])
+		unAvion = new Avion(2)
 		unMicro = new Micro(5)
 		unTren = new Tren(3)
 		unBarco = new Barco(3,2)
 		viajeGaAS = new Viaje(garlicSea,silverSea,unAvion)
 		viajeAPlaya = new Viaje(garlicSea,playasDeSilverSea,unAvion)
-		pHairi = new Usuario([],200000,#{},garlicSea,usuarioEmpresario)
+		pHairi = new Usuario([],240000,#{},garlicSea,usuarioEmpresario)
 		usuarioSinDinero = new Usuario([],0,#{},garlicSea,usuarioGrupoFamiliar)
-		estudiante = new Usuario([],1500,#{},garlicSea,usuarioEstudiantil)
+		estudiante = new Usuario([],2000,#{},garlicSea,usuarioEstudiantil)
 		unEmpresario = new Usuario([],300000,#{},silverSea,usuarioEmpresario)
 		
 		barrileteCosmico.mediosDeTransporte(#{unAvion,unMicro,unTren,unBarco})
+		unAvion.agregarTurbina(700)
+		unAvion.agregarTurbina(700)
+		unAvion.agregarTurbina(600)
 	}
 	
 test "Obtener las millas de PHari"

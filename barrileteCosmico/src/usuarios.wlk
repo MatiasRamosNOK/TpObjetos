@@ -1,4 +1,4 @@
-import example.*
+import barrileteCosmico.*
 
 class UserException inherits Exception { }
 
