@@ -16,25 +16,25 @@ describe "Test usuarios" {
 	var usuarioSinDinero
 	var estudiante
 	var unEmpresario
-	var playasDeSilverSea
 	var viajeAPlaya
 	fixture
 	{
-		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
-		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
-		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
-		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 500, "Good Airs", 400)
-		playasDeSilverSea = new Playas(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
+		garlicSea = new Playas(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
+		silverSea = new Montanias(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
+		lastToninas = new CiudadHistorica(["Vacuna Gripal", "Vacuna B", "Necronomicon","AsistenciaDeViajero"], 3500, "Last Toninas", 300)
+		goodAirs = new Playas(["Cerveza", "Protector Solar"], 1500, "Good Airs", 400)
 		unAvion = new Avion(2)
 		unMicro = new Micro(5)
 		unTren = new Tren(3)
 		unBarco = new Barco(3,2)
 		viajeGaAS = new Viaje(garlicSea,silverSea,unAvion)
-		viajeAPlaya = new Viaje(garlicSea,playasDeSilverSea,unAvion)
+		viajeAPlaya = new Viaje(garlicSea,silverSea,unAvion)
 		pHairi = new Usuario([],240000,#{},garlicSea,usuarioEmpresario)
 		usuarioSinDinero = new Usuario([],0,#{},garlicSea,usuarioGrupoFamiliar)
 		estudiante = new Usuario([],2000,#{},garlicSea,usuarioEstudiantil)
 		unEmpresario = new Usuario([],300000,#{},silverSea,usuarioEmpresario)
+		
+		silverSea.altura(1000)
 		
 		barrileteCosmico.mediosDeTransporte(#{unAvion,unMicro,unTren,unBarco})
 		unAvion.agregarTurbina(700)

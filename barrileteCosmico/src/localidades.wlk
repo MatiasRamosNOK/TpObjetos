@@ -37,6 +37,10 @@ class Localidad{
 	method distanciaHasta(ciudad){
 		return calculadoraDeDistancia.distancia(self,ciudad)
 	}
+	
+	method equipaje(){
+		return equipaje
+	}
 }
 
 class Playas inherits Localidad{
@@ -57,7 +61,7 @@ class Montanias inherits Localidad{
 	var property altura;
 	
 	override method esPeligroso(){
-		return altura>5000 and super();
+		return altura>5000 and super()
 	}
 	
 

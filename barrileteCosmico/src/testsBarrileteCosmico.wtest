@@ -13,10 +13,12 @@ describe "Test barrilete cosmico"{
 	var unBarco
 	var viajeGaAS
 	fixture{
-		garlicSea = new Localidad(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
-		silverSea = new Localidad(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
-		lastToninas = new Localidad(["Vacuna Gripal", "Vacuna B", "Necronomicon"], 3500, "Last Toninas", 300)
-		goodAirs = new Localidad(["Cerveza", "Protector Solar"], 1500, "Good Airs", 400)
+		garlicSea = new Playas(["Caña de Pescar", "Piloto"],2500,"Garlic's Sea", 100)
+		silverSea = new Montanias(["ProtectorSolar","Equipo de Buceo"], 1350, "Silver's Sea", 200)
+		lastToninas = new CiudadHistorica(["Vacuna Gripal", "Vacuna B", "Necronomicon","AsistenciaDeViajero"], 3500, "Last Toninas", 300)
+		goodAirs = new Playas(["Cerveza", "Protector Solar"], 1500, "Good Airs", 400)
+		
+		silverSea.altura(4000)
 		
 	
 		barrileteCosmico.agregarDestinos(garlicSea)
@@ -36,7 +38,7 @@ describe "Test barrilete cosmico"{
 	
 test "Obtener destinos mas importantes de Barrilete Cosmico" {
 
-	assert.equals(#{garlicSea,lastToninas},barrileteCosmico.destinosImportantes())
+	assert.equals(#{garlicSea,goodAirs},barrileteCosmico.destinosImportantes())
 
 }
 
@@ -77,7 +79,7 @@ test "Obtener los destinos mas peligrosos hasta el momento"
 
 test "Saber si barrilete cosmico es una empresa extrema"
 {
-	assert.that(barrileteCosmico.esExtrema())
+	assert.notThat(barrileteCosmico.esExtrema())
 }
 
 test "Conocer la carta de destinos de Barrilete Cosmico"
